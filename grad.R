@@ -1,7 +1,7 @@
-grad<-function(fun,gfun,x0,epsilon=1e-10,maxk<-5000){ 
+grad<-function(fun,gfun,x0,epsilon=1e-10,maxk=5000){ 
   rho<-0.5;sigma<-0.4;k<-0; 
   while(k<maxk){
-    g=gfun(x0); #calculating grdient
+    g=gfun(x0); #calculating gradient
     d=-g;    
     if(norm(d)<epsilon){
       break;
@@ -22,13 +22,16 @@ grad<-function(fun,gfun,x0,epsilon=1e-10,maxk<-5000){
 }
 
 #example
+#objective function
 fun<-function(x){
  f<-100*(x[1]^2-x[2])^2+(x[1]-1)^2
 }
-
+#gradient
 gfun<-function(x){
  g<-c(400*x[1]*(x[1]^2-x[2])+2*(x[1]-1), -200*(x[1]^2-x[2]));
  g<-t(t(g));
 }
+#the initial value
+x0<-c(1.2,0.6);
 grad(fun,gfun,x0);
 
